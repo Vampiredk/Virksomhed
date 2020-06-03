@@ -1,0 +1,45 @@
+﻿<Page
+    x:Class="Virksomhed.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Virksomhed"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <ListView SelectedItem="{x:Bind ViewModel.SelectedVirksomhed, Mode=TwoWay}" ItemsSource="{x:Bind ViewModel.OC_Bruger}" HorizontalAlignment="Left" Height="375" Margin="420,176,0,0" VerticalAlignment="Top" Width="291">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Virksomhed">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2,2,2,2" Text="{x:Bind OpretBrugernavn, Mode=TwoWay}"/>
+                        <TextBlock Margin="2,2,2,2" Text="{x:Bind OpretPassword, Mode=TwoWay}"/>
+                        <TextBlock Margin="2,2,2,2" Text="{x:Bind OpretEmail, Mode=TwoWay}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView SelectedItem="{x:Bind ViewModel.SelectedAnnounce, Mode=TwoWay}" ItemsSource="{x:Bind ViewModel.OC_Announce}" HorizontalAlignment="Left" Height="375" Margin="786,176,0,0" VerticalAlignment="Top" Width="291">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Announce">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2,2,2,2" Text="{x:Bind OpretInfo, Mode=TwoWay}"/>
+                        <TextBlock Margin="2,2,2,2" Text="{x:Bind OpretProfession, Mode=TwoWay}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+        <TextBox HorizontalAlignment="Left" Margin="45,42,0,0" Description="Brugernavn" Text="{x:Bind Path=ViewModel.Brugernavn, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="139,42,0,0" Description="Password" Text="{x:Bind Path=ViewModel.Password, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="237,42,0,0" Description="Email" Text="{x:Bind Path=ViewModel.Email, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button Command="{x:Bind ViewModel.AddNyVirksomhed, Mode=OneWay}" Content="Tilføj Virksomhed" Margin="45,122,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="13,258,0,0" Description="VirKsomheds INfo" Text="{x:Bind Path=ViewModel.Info, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="139,258,0,0" Description="Profession" Text="{x:Bind Path=ViewModel.Profession, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button Command="{x:Bind Mode=OneWay, Path=ViewModel.AddNyAnnounce}" Content="Tilføj Announce" Margin="43,347,0,0" VerticalAlignment="Top"/>
+        <Button Command="{x:Bind Mode=OneWay, Path=ViewModel.VirksomhedListe}" Content="Hvis Liste" Margin="211,348,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Page>
